@@ -10,8 +10,8 @@ from langchain_community.vectorstores import FAISS
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain
 from langchain import hub
-# from langchain_pinecone import PineconeVectorStore
-# from langchain_pinecone import PineconeEmbeddings
+from langchain_pinecone import PineconeVectorStore
+from langchain_pinecone import PineconeEmbeddings
 
 
 if __name__ == "__main__":
@@ -23,7 +23,11 @@ if __name__ == "__main__":
         chunk_size=1000, chunk_overlap=30, separator="\n"
     )
     docs = text_splitter.split_documents(documents=documents)
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+    # embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+    embeddings = PineconeEmbeddings(
+        model="llama-text-embed-v2",
+        pinecone_api_key=os.environ.get("PINECONE_API_KEY"),
+    )
 
     
     vectorstore = FAISS.from_documents(docs, embeddings)
