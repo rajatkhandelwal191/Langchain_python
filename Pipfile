@@ -6,13 +6,16 @@ name = "pypi"
 [packages]
 pypdf = "*"
 faiss-cpu = "*"
+langchain = "*"
+community = "*"
 langchain-google-genai = "*"
 black = "*"
 python-dotenv = "*"
 isort = "*"
 langchainhub = "*"
-langchain = "*"
-community = "*"
+langchain-community = "*"
+pinecone = "*"
+langchain-pinecone = "*"
 
 [dev-packages]
 
